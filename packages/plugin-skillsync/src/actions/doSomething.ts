@@ -1,6 +1,6 @@
 // Create a job
 
-import { Action, HandlerCallback, IAgentRuntime, ITextGenerationService, Memory, ServiceType, State } from "@elizaos/core";
+import { Action, generateText, HandlerCallback, IAgentRuntime, ITextGenerationService, Memory, ModelClass, ServiceType, State } from "@elizaos/core";
 import { SkillSyncApi } from "../api/SkillSyncApi";
 
 
@@ -34,10 +34,18 @@ export const doSomething: Action = {
     ) => {
         // Get the service from runtime
         //onst skillSyncApi = new SkillSyncApi();
+        const text = await generateText({
+            runtime,
+            context: `You are a helpful assistant that can identify skills from any text. The user said this: ${message.content.text}. Respond with a list of relevant skills. Use a JSON schema of this format: {skills: string[]}`,
+            modelClass: ModelClass.MEDIUM,
+            maxSteps: 10,
+            stop: ["\n"],
+            customSystemPrompt: "You are a helpful assistant that can identify skills from any text. Use a JSON schema of this format: {skills: string[]}",
+        });
 
-        const result = "I flew a drone around the room";
-        callback({ text: result });
-        result;
+
+        callback({ text });
+        return text;
 
     }
 }
