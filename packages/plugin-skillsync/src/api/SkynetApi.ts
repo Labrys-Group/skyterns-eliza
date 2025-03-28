@@ -12,6 +12,7 @@ export class SkynetApi {
         });
     }
 
+
     async createWorker({name, skills}: {name: string, skills: string[]}): Promise<boolean> {
 
         console.log("this is the name", name);
