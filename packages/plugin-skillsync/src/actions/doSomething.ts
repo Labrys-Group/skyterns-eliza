@@ -1,7 +1,7 @@
 // Create a job
 
 import { Action, generateText, HandlerCallback, IAgentRuntime, ITextGenerationService, Memory, ModelClass, ServiceType, State } from "@elizaos/core";
-import { SkillSyncApi } from "../api/SkillSyncApi";
+//import { SkillSyncApi } from "../api/SkillSyncApi";
 
 
 const ACTION_NAME = "SKILLSYNC_DO_SOMETHING";
@@ -42,6 +42,8 @@ export const doSomething: Action = {
             stop: ["\n"],
             customSystemPrompt: "You are a helpful assistant that can identify skills from any text. Use a JSON schema of this format: {skills: string[]}",
         });
+
+        //await skillSyncApi.createSkill(text);
 
 
         callback({ text });
