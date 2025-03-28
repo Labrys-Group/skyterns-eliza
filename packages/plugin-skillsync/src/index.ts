@@ -1,11 +1,11 @@
 import type { Plugin } from "@elizaos/core";
+import { createWorker } from "./actions/createWorker";
 import { skillSyncProvider } from "./provider/SkillSyncProvider";
-import { doSomething } from "./actions/doSomething";
 
 const skillSyncPlugin: Plugin = {
     name: "skill-sync",
     description: "A plugin for skill-sync",
-    actions: [doSomething],
+    actions: [createWorker],
     evaluators: [],
     providers: [skillSyncProvider],
     services: []
