@@ -149,6 +149,9 @@ importers:
       '@elizaos/plugin-bootstrap':
         specifier: workspace:*
         version: link:../packages/plugin-bootstrap
+      '@elizaos/plugin-skillsync':
+        specifier: workspace:*
+        version: link:../packages/plugin-skillsync
       '@types/node':
         specifier: ^22.13.5
         version: 22.13.5
@@ -598,6 +601,22 @@ importers:
       whatwg-url:
         specifier: 7.1.0
         version: 7.1.0
+    devDependencies:
+      '@types/node':
+        specifier: ^22.10.5
+        version: 22.13.5
+      tsup:
+        specifier: 8.3.5
+        version: 8.3.5(@swc/core@1.11.4(@swc/helpers@0.5.15))(jiti@1.21.7)(postcss@8.5.3)(typescript@5.8.2)(yaml@2.7.0)
+
+  packages/plugin-skillsync:
+    dependencies:
+      '@elizaos/core':
+        specifier: workspace:*
+        version: link:../core
+      axios:
+        specifier: ^1.7.7
+        version: 1.8.1
     devDependencies:
       '@types/node':
         specifier: ^22.10.5
