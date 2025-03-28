@@ -1,9 +1,10 @@
 import { type Character, ModelProviderName } from "@elizaos/core";
 import skillSyncPlugin from "@elizaos/plugin-skillsync";
+import {daoPlugin} from "@elizaos/plugin-dao";
 export const defaultCharacter: Character = {
     name: "Rebecca",
     username: "rebecca",    
-    plugins: [skillSyncPlugin],
+    plugins: [skillSyncPlugin, daoPlugin],
     modelProvider: ModelProviderName.OLLAMA,
     settings: {
         voice: {

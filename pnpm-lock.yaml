@@ -149,6 +149,9 @@ importers:
       '@elizaos/plugin-bootstrap':
         specifier: workspace:*
         version: link:../packages/plugin-bootstrap
+      '@elizaos/plugin-dao':
+        specifier: workspace:*
+        version: link:../packages/plugin-dao
       '@elizaos/plugin-skillsync':
         specifier: workspace:*
         version: link:../packages/plugin-skillsync
@@ -601,6 +604,25 @@ importers:
       whatwg-url:
         specifier: 7.1.0
         version: 7.1.0
+    devDependencies:
+      '@types/node':
+        specifier: ^22.10.5
+        version: 22.13.14
+      tsup:
+        specifier: 8.3.5
+        version: 8.3.5(@swc/core@1.11.13)(jiti@1.21.7)(postcss@8.5.3)(typescript@5.6.3)(yaml@2.7.0)
+
+  packages/plugin-dao:
+    dependencies:
+      '@elizaos/core':
+        specifier: workspace:*
+        version: link:../core
+      axios:
+        specifier: ^1.7.7
+        version: 1.8.4
+      ethers:
+        specifier: ^6.13.5
+        version: 6.13.5(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     devDependencies:
       '@types/node':
         specifier: ^22.10.5
