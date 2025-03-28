@@ -6,7 +6,7 @@ export const skillSyncProvider: Provider = {
         runtime: IAgentRuntime,
         message: Memory,
         state?: State,
-      ): Promise<boolean>=> {    
+      ): Promise<boolean>=> { 
         try {
             const skynetApi = new SkynetApi();
             const result = await skynetApi.createWorker();

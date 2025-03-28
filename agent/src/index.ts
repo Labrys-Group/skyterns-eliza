@@ -4,7 +4,6 @@ import {
     AgentRuntime,
     CacheManager,
     CacheStore,
-    type Plugin,
     type Character,
     type ClientInstance,
     DbCacheAdapter,
@@ -15,13 +14,13 @@ import {
     type IDatabaseCacheAdapter,
     ModelProviderName,
     parseBooleanFromText,
+    type Plugin,
     settings,
     stringToUuid,
     validateCharacterConfig,
 } from "@elizaos/core";
 import { defaultCharacter } from "./defaultCharacter.ts";
 
-import { bootstrapPlugin } from "@elizaos/plugin-bootstrap";
 import JSON5 from 'json5';
 
 import fs from "fs";
@@ -624,12 +623,6 @@ export async function createAgent(
         modelProvider: character.modelProvider,
         evaluators: [],
         character,
-        // character.plugins are handled when clients are added
-        plugins: [
-            bootstrapPlugin,
-        ]
-            .flat()
-            .filter(Boolean),
         providers: [],
         managers: [],
         fetch: logFetch,

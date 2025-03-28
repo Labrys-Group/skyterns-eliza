@@ -1,4 +1,5 @@
-import { Action, IAgentRuntime, Memory } from "@elizaos/core";
+import { Action, generateObject, IAgentRuntime, Memory, ModelClass } from "@elizaos/core";
+import { z } from "zod";
 import { SkynetApi } from "../api/skynetApi";
 
 
@@ -27,11 +28,50 @@ export const createWorker: Action = {
         // Get the service from runtime
         const skynetApi = new SkynetApi();
 
+        const response = await generateObject({
+            runtime,
+            context: `You are a helpful assistant that can identify skills from any text. The user said this: ${message.content.text}. Respond with a list of relevant skills. Use plain JSON format no markdown: {skills: string[], name: string}`,
+            modelClass: ModelClass.MEDIUM,
+            schema: z.object({
+                skills: z.array(z.string()),
+                name: z.string()
+            })
+        });
+
+        // const json_str = text.replace("```json", "").replace("```", "").trim();
+
+        // // Parse the JSON string
+        // let parsedText;
+        // try {
+        //     parsedText = JSON.parse(json_str);
+        // } catch (error) {
+        //     console.error("Error parsing text:", error);
+        //     throw new Error("Invalid JSON response from generateText");
+        // }
+
+        // const json = await generateText({
+        //     runtime,
+        //     context: `You are a helpful assistant that can identify skills from any text. The user said this: ${message.content.text}. Respond with a list of relevant skills. Use this format: {skills: string[], name: string}`,
+        //     modelClass: ModelClass.MEDIUM,
+        //     maxSteps: 10,
+        //     stop: ["\n"],
+        // });
+
+        console.log("this is the response", response);
+
         // call the create a worker function
-        const result = await skynetApi.createWorker();
+        const result = await skynetApi.createWorker({name: response.object.name, skills: response.object.skills});
 
 
-        if (!result) {
+        if (result) {
+            return {
+                user: runtime.agentId,
+                content: {
+                    text: `I created a worker successfully`,
+                    action: ACTION_NAME
+                }
+            };
+        } else {
             return {
                 user: runtime.agentId,
                 content: {
@@ -40,13 +80,5 @@ export const createWorker: Action = {
                 }
             };
         }
-
-        return {
-            user: runtime.agentId,
-            content: {
-                text: `I created a worker successfully`,
-                action: ACTION_NAME
-            }
-        };
     }
 }

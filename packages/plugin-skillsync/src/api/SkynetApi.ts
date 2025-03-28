@@ -5,17 +5,23 @@ export class SkynetApi {
 
     constructor() {
         this.axios = axios.create({
-            baseURL: process.env.NEXT_PUBLIC_URL || "http://localhost:3000/api",
+            baseURL: process.env.NEXT_PUBLIC_URL || "http://localhost:8080/api",
             headers: {
                 "Content-Type": "application/json"
             }
         });
     }
 
-    async createWorker(): Promise<boolean> {
-        
-        // Create a new worker
-        const response = await this.axios.post<boolean>("/worker");
+    async createWorker({name, skills}: {name: string, skills: string[]}): Promise<boolean> {
+
+        console.log("this is the name", name);
+        console.log("this is the skills", skills);
+        const response = await this.axios.post<boolean>("/worker", {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: ({name, skills})
+        });
         return response.data;
     }
 
@@ -33,5 +39,4 @@ export class SkynetApi {
         const response = await this.axios.get(`/project`);
         return response.data;
     }
-
 }
