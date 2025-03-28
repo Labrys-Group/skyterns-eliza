@@ -1,9 +1,9 @@
 import { type Character, ModelProviderName } from "@elizaos/core";
-
+import skillSyncPlugin from "@elizaos/plugin-skillsync";
 export const defaultCharacter: Character = {
     name: "Eliza",
     username: "eliza",
-    plugins: [],
+    plugins: [skillSyncPlugin],
     modelProvider: ModelProviderName.OLLAMA,
     settings: {
         secrets: {},
