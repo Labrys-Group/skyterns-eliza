@@ -1,7 +1,6 @@
 // Create a job
 
-import { Action, generateText, HandlerCallback, IAgentRuntime, ITextGenerationService, Memory, ModelClass, ServiceType, State } from "@elizaos/core";
-//import { SkillSyncApi } from "../api/SkillSyncApi";
+import { Action, HandlerCallback, IAgentRuntime, Memory, State } from "@elizaos/core";
 
 
 const ACTION_NAME = "SKILLSYNC_DO_SOMETHING";
