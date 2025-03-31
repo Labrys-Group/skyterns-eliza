@@ -1,5 +1,5 @@
 import { IAgentRuntime, Memory, Provider, State } from "@elizaos/core";
-import { SkynetApi } from "../api/skynetApi";
+
 
 export const skillSyncProvider: Provider = {
     get: async (
@@ -8,9 +8,8 @@ export const skillSyncProvider: Provider = {
         state?: State,
       ): Promise<boolean>=> { 
         try {
-            const skynetApi = new SkynetApi();
-            const result = await skynetApi.createWorker();
-            return result;
+          return true;
+
 
         } catch (error) {
             return false;

@@ -1,6 +1,6 @@
 import { Action, generateObject, IAgentRuntime, Memory, ModelClass } from "@elizaos/core";
 import { z } from "zod";
-import { SkynetApi } from "../api/skynetApi";
+import { SkynetApi } from "../api/SkynetApi";
 
 
 const ACTION_NAME = "CREATE_WORKER";
@@ -62,6 +62,7 @@ export const createWorker: Action = {
         console.log("this is the response", response);
 
         // call the create a worker function
+        // @ts-ignore
         const result = await skynetApi.createWorker({name: response.object.name, skills: response.object.skills});
 
 
