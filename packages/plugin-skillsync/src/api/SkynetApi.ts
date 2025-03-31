@@ -5,7 +5,7 @@ export class SkynetApi {
 
     constructor() {
         this.axios = axios.create({
-            baseURL: process.env.NEXT_PUBLIC_URL || "http://localhost:3000/api",
+            baseURL: process.env.NEXT_PUBLIC_URL || "http://localhost:8080/api",
             headers: {
                 "Content-Type": "application/json"
             }

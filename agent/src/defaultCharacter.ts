@@ -4,7 +4,7 @@ export const defaultCharacter: Character = {
     name: "Rebecca",
     username: "rebecca",    
     plugins: [skillSyncPlugin],
-    modelProvider: ModelProviderName.OLLAMA,
+    modelProvider: ModelProviderName.ANTHROPIC,
     settings: {
         voice: {
             model: "en_US-hfc_female-medium",
